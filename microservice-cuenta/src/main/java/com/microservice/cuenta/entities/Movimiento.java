@@ -34,9 +34,6 @@ public class Movimiento {
     @Column(name = "SALDO")
     private Float saldo;
 
-    @Column(name = "ESTADO")
-    private EstadoEnum estado;
-
     @ManyToOne
     @JoinColumn(name = "CODIGO_CUENTA")
     @JsonBackReference
