@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
@@ -27,6 +28,11 @@ public class ClienteController {
     @GetMapping("/search/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         return ResponseEntity.ok(clienteService.findClientById(id));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> findAllClientes(){
+        return ResponseEntity.ok(clienteService.findAll());
     }
 
     @GetMapping("/search-cuentas/{idCliente}")
