@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "51f8879e-871e-4894-962f-77caf7671820",
+		"name": "PruebaServiciosNeoris",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ObtenerCuentas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/cuentas/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"cuentas",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerClientePorCodigo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/api/clientes/search/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"clientes",
+						"search",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerCuentasYMovimientosPorCliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/api/clientes/search-cuentas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"clientes",
+						"search-cuentas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReporteMovimientosPorClienteYFechas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/cuentas/reportes/1?fechaDesde=2024-09-01T00:00:00&fechaHasta=2024-09-18T23:59:59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"cuentas",
+						"reportes",
+						"1"
+					],
+					"query": [
+						{
+							"key": "fechaDesde",
+							"value": "2024-09-01T00:00:00"
+						},
+						{
+							"key": "fechaHasta",
+							"value": "2024-09-18T23:59:59"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerCuentas Gateway",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/cuentas/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"cuentas",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarMovimientoPorCodigo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/movimientos/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"movimientos",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerMovimientos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/movimientos/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"movimientos",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerMovimientos Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fecha\": \"2023-09-18T14:30:00\",\r\n  \"tipoMovimiento\": 1,\r\n  \"valor\": 200.0,\r\n  \"saldo\": 1200.0,\r\n  \"cuentaId\": 1\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/movimientos/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"movimientos",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
