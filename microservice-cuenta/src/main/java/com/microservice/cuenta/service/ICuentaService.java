@@ -18,4 +18,6 @@ public interface ICuentaService {
 
     List<Cuenta> findMovimientosPorFechas(Long clienteId, LocalDateTime fechaDesde, LocalDateTime fechaHasta) ;
 
+    String findMovementsByDates(Long clienteId, LocalDateTime fechaDesde, LocalDateTime fechaHasta) ;
+
 }

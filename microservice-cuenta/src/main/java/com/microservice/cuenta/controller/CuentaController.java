@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -46,5 +48,19 @@ public class CuentaController {
                                                  @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime fechaHasta) {
         return ResponseEntity.ok(cuentaService.findMovimientosPorFechas(codigoCliente, fechaDesde, fechaHasta));
     }
+
+    @GetMapping("/reportes/pdf/{codigoCliente}")
+    public ResponseEntity<?> getReportePdfBase64(
+            @PathVariable Long codigoCliente,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaDesde,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaHasta) {
+        String base64Pdf  = cuentaService.findMovementsByDates(codigoCliente, fechaDesde, fechaHasta);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("pdfBase64", base64Pdf);
+
+        return ResponseEntity.ok(response);
+    }
+
 
 }

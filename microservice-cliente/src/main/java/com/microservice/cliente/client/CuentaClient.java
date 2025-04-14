@@ -11,8 +11,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
-@CrossOrigin(origins = "http://localhost:3000")
 @FeignClient(name = "msvc-cuenta", url = "localhost:9090/api/cuentas")
 public interface CuentaClient {
 
