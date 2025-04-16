@@ -47,4 +47,31 @@ public class ClienteController {
         return ResponseEntity.ok(clienteService.findMovimientosPorFechas(idCliente,fechaDesde,fechaHasta ));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCliente(@PathVariable Long id, @RequestBody Cliente clienteActualizado) {    
+        
+        try {
+            Cliente clienteExistente = clienteService.findClientById(id);
+
+            if (clienteExistente == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            clienteExistente.setNombre(clienteActualizado.getNombre());
+            clienteExistente.setGenero(clienteActualizado.getGenero());
+            clienteExistente.setEdad(clienteActualizado.getEdad());
+            clienteExistente.setIdentificacion(clienteActualizado.getIdentificacion());
+            clienteExistente.setDireccion(clienteActualizado.getDireccion());
+            clienteExistente.setTelefono(clienteActualizado.getTelefono());
+            clienteExistente.setPassword(clienteActualizado.getPassword());
+            clienteExistente.setEstado(clienteActualizado.getEstado());
+
+            clienteService.save(clienteExistente);
+
+            return ResponseEntity.ok(clienteExistente);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar cliente: " + e.getMessage());
+        }
+    }
+
 }
