@@ -1,0 +1,59 @@
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: bancadb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    
+
+  eureka:
+    build: ./microservice-eureka
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    depends_on:
+      - postgres
+
+  gateway:
+    build: ./microservice-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka
+
+  cliente:
+    build: ./microservice-cliente
+    container_name: microservice-cliente
+    ports:
+      - "8090:8090"
+    depends_on:
+      - postgres
+      - eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/bancadb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+
+  cuenta:
+    build: ./microservice-cuenta
+    container_name: microservice-cuenta
+    ports:
+      - "9090:9090"
+    depends_on:
+      - postgres
+      - eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/bancadb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+
+volumes:
+  postgres_data:
